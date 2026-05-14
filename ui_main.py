@@ -47,7 +47,7 @@ class MainWindowUI:
         
         self.cmd_text = QTextEdit()
         self.cmd_text.setPlaceholderText("输入编译命令")
-        self.cmd_text.setText("# 示例编译命令\nmkdir -p build\ncd build\ncmake ..\nmake -j$(nproc)\nsudo make install #此命令会自动拦截到chroot，输出到./deb_package下，随后可转换为deb包安装")
+        self.cmd_text.setText("# 示例编译命令\n#需要装依赖先使用apt\n#需要克隆代码可选择空目录使用git clone再cd过去\nmkdir -p build\ncd build\ncmake ..\nmake -j$(nproc)\nsudo make install #此命令会自动拦截到chroot，输出到./deb_package下，随后可转换为deb包安装")
         layout.addWidget(self.cmd_text)
         
         self.status_label = QLabel("状态: 等待选择目录")
