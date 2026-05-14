@@ -16,12 +16,23 @@ class MainWindowUI:
         layout.setSpacing(10)
         
         self.info_label = QLabel("""<b>使用说明:</b>
-此程序可以方便地在Debian系发行版帮你从源码编译安装软件。它会自动使用chroot拦截sudo make install命令，一键将编译好的程序转换成deb包安装，以解决使用make安装软件包后管理困难的问题。
-注意:程序执行到一些命令需要授权，请在终端中输入密码。apt安装依赖请使用-y参数（最好在外部终端执行）。""")
+此程序可以方便地在Debian系发行版帮你从源码编译安装软件。
+它会自动使用chroot拦截sudo make install命令，一键将编译好的程序转换成deb包安装，以解决使用make安装软件包后管理困难的问题。
         self.info_label.setWordWrap(True)
         self.info_label.setStyleSheet("color: #666; font-size: 12px;")
         layout.addWidget(self.info_label)
         
+        self.info_label = QLabel("""注意:程序执行到一些命令需要授权，请在终端中输入密码。apt安装依赖请使用-y参数（最好在外部终端执行）。""")
+        self.info_label.setWordWrap(True)
+        self.info_label.setStyleSheet("color: #666; font-size: 12px;")
+        layout.addWidget(self.info_label)
+
+        self.info_label = QLabel("""也能用于打包：工作目录存在deb_package文件夹即可使用打包按钮""")
+        self.info_label.setWordWrap(True)
+        self.info_label.setStyleSheet("color: #666; font-size: 12px;")
+        layout.addWidget(self.info_label)
+
+
         self.dir_layout = QHBoxLayout()
         self.dir_label = QLabel("源码目录:")
         self.dir_label.setFixedWidth(80)

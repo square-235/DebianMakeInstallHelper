@@ -30,6 +30,15 @@ class MainWindowController:
             self.builder = DebPackageBuilder(dir_path)
             self.ui.status_label.setText("状态: 已选择目录")
             self.ui.compile_btn.setEnabled(True)
+            
+            deb_package_dir = Path(dir_path) / "deb_package"
+            if deb_package_dir.exists() and deb_package_dir.is_dir():
+                self.ui.package_btn.setEnabled(True)
+            
+            for deb_file in Path(dir_path).glob("*.deb"):
+                if deb_file.is_file():
+                    self.ui.install_btn.setEnabled(True)
+                    break
     
     def add_output(self, text):
         self.ui.output_text.append(text)
@@ -178,6 +187,15 @@ class MainWindowController:
         if not self.builder:
             return
         
+        if not self.builder.deb_dir or not self.builder.deb_dir.exists():
+            deb_package_dir = Path(self.source_dir) / "deb_package"
+            if deb_package_dir.exists() and deb_package_dir.is_dir():
+                self.builder.deb_dir = deb_package_dir
+                self.builder.pkg_name = Path(self.source_dir).name.lower().replace('_', '-').replace(' ', '-')
+                version = self.ui.version_edit.text().strip()
+                if version:
+                    self.builder.pkg_version = version
+        
         self.ui.status_label.setText("状态: 构建Deb包...")
         self.ui.package_btn.setEnabled(False)
         QApplication.processEvents()
@@ -198,6 +216,12 @@ class MainWindowController:
     def run_install(self):
         if not self.builder:
             return
+        
+        if not self.builder.deb_path or not self.builder.deb_path.exists():
+            for deb_file in Path(self.source_dir).glob("*.deb"):
+                if deb_file.is_file():
+                    self.builder.deb_path = deb_file
+                    break
         
         self.ui.status_label.setText("状态: 安装Deb包...")
         self.ui.install_btn.setEnabled(False)
