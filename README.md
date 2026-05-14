@@ -2,6 +2,7 @@
 
 # 截图
 ![截图](screenshot.png)
+![截图](screenshot2.png)
 
 # 优点
 - 自动拦截sudo make install到chroot，不污染系统
