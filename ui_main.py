@@ -17,7 +17,7 @@ class MainWindowUI:
         
         self.info_label = QLabel("""<b>使用说明:</b>
 此程序可以方便地在Debian系发行版帮你从源码编译安装软件。
-它会自动使用chroot拦截sudo make install命令，一键将编译好的程序转换成deb包安装，以解决使用make安装软件包后管理困难的问题。
+它会自动使用chroot拦截sudo make install命令，一键将编译好的程序转换成deb包安装，以解决使用make安装软件包后管理困难的问题。"""
         self.info_label.setWordWrap(True)
         self.info_label.setStyleSheet("color: #666; font-size: 12px;")
         layout.addWidget(self.info_label)
