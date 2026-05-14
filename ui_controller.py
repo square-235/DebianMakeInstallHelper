@@ -28,13 +28,8 @@ class MainWindowController:
             self.ui.dir_edit.setText(dir_path)
             
             self.builder = DebPackageBuilder(dir_path)
-            if self.builder.check_cmakelist():
-                self.ui.status_label.setText("状态: 已找到 CMakeLists.txt")
-                self.ui.compile_btn.setEnabled(True)
-            else:
-                self.ui.status_label.setText("状态: 未找到 CMakeLists.txt")
-                self.ui.compile_btn.setEnabled(False)
-                QMessageBox.critical(None, "错误", "所选目录中未找到 CMakeLists.txt")
+            self.ui.status_label.setText("状态: 已选择目录")
+            self.ui.compile_btn.setEnabled(True)
     
     def add_output(self, text):
         self.ui.output_text.append(text)
